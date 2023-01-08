@@ -5,7 +5,7 @@ const exec = require("child_process").exec;
 try {
     const workflowType = core.getInput('type');
     if (workflowType === "byoc") {
-        exec('sudo sh ./shell-scripts/byoc.sh', function (error, stdout, stderr) {
+        exec('chmod +x ./shell-scripts/byoc.sh && sh ./shell-scripts/byoc.sh', function (error, stdout, stderr) {
             console.log(error, stdout, stderr);
         })
     }

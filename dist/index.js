@@ -2830,10 +2830,9 @@ const core = __nccwpck_require__(719);
 const exec = (__nccwpck_require__(81).exec);
 
 try {
-    // const workflowType = core.getInput('type');
-    const workflowType = "byoc";
+    const workflowType = core.getInput('type');
     if (workflowType === "byoc") {
-        exec('sudo sh ./shell-scripts/byoc.sh', function (error, stdout, stderr) {
+        exec('chmod +x ./shell-scripts/byoc.sh && sh ./shell-scripts/byoc.sh', function (error, stdout, stderr) {
             console.log(error, stdout, stderr);
         })
     }
