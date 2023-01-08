@@ -2828,14 +2828,13 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(719);
 // const github = require('@actions/github');
 const exec = (__nccwpck_require__(81).exec);
+const path = __nccwpck_require__(17);
 
 try {
     const workflowType = core.getInput('type');
-    exec('pwd', function (error, stdout, stderr) {
-        console.log(error, stdout, stderr);
-    });
     if (workflowType === "byoc") {
-        exec('chmod +x ./shell-scripts/byoc.sh && sh ./shell-scripts/byoc.sh', function (error, stdout, stderr) {
+        const filePath = __nccwpck_require__.ab + "byoc.sh";
+        exec(`chmod +x ${filePath} && sh ${filePath}`, function (error, stdout, stderr) {
             console.log(error, stdout, stderr);
         });
     }

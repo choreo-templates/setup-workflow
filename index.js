@@ -1,14 +1,13 @@
 const core = require('@actions/core');
 // const github = require('@actions/github');
 const exec = require("child_process").exec;
+const path = require('path');
 
 try {
     const workflowType = core.getInput('type');
-    exec('pwd', function (error, stdout, stderr) {
-        console.log(error, stdout, stderr);
-    });
     if (workflowType === "byoc") {
-        exec('chmod +x ./shell-scripts/byoc.sh && sh ./shell-scripts/byoc.sh', function (error, stdout, stderr) {
+        const filePath = path.resolve(__dirname, 'shell-scripts/byoc.sh');
+        exec(`chmod +x ${filePath} && sh ${filePath}`, function (error, stdout, stderr) {
             console.log(error, stdout, stderr);
         });
     }
