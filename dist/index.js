@@ -4116,11 +4116,11 @@ const path = __nccwpck_require__(17);
 
 try {
     const workflowType = core.getInput('type');
+    // const workflowType = "byoc";
     if (workflowType === "byoc") {
         const filePath = __nccwpck_require__.ab + "byoc.sh";
-        exec(`chmod 0777 ${filePath} && sh ${filePath}`, function (error, stdout, stderr) {
-            console.log(error, stdout, stderr);
-        });
+        exec(`chmod 0777 ${filePath}`);
+        exec(`sh ${filePath}`);
     }
 } catch (error) {
     core.setFailed(error.message);

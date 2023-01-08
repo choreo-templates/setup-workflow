@@ -6,11 +6,11 @@ const path = require('path');
 
 try {
     const workflowType = core.getInput('type');
+    // const workflowType = "byoc";
     if (workflowType === "byoc") {
         const filePath = path.resolve(__dirname, 'shell-scripts/byoc.sh');
-        exec(`chmod 0777 ${filePath} && sh ${filePath}`, function (error, stdout, stderr) {
-            console.log(error, stdout, stderr);
-        });
+        exec(`chmod 0777 ${filePath}`);
+        exec(`sh ${filePath}`);
     }
 } catch (error) {
     core.setFailed(error.message);
