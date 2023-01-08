@@ -2831,10 +2831,13 @@ const exec = (__nccwpck_require__(81).exec);
 
 try {
     const workflowType = core.getInput('type');
+    exec('pwd', function (error, stdout, stderr) {
+        console.log(error, stdout, stderr);
+    });
     if (workflowType === "byoc") {
         exec('chmod +x ./shell-scripts/byoc.sh && sh ./shell-scripts/byoc.sh', function (error, stdout, stderr) {
             console.log(error, stdout, stderr);
-        })
+        });
     }
 } catch (error) {
     core.setFailed(error.message);
