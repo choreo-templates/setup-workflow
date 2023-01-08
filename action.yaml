@@ -1,0 +1,10 @@
+name: 'Setup Workflow'
+description: 'Initial setup of the Choreo workflow'
+inputs:
+  type:
+    description: 'Workflow type'
+    required: true
+    default: 'byoc'
+runs:
+  using: 'node16'
+  main: 'index.js'
