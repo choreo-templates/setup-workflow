@@ -13,7 +13,6 @@ echo $| jq 'del(.CONTAINER_REGISTRY_CRED_LIST)' temp-updated-env.json > updated-
 echo $| jq -r 'to_entries[] | [.key,(.value|@sh)] | join("=")' env.json > secrets.env
 echo $| jq -r 'to_entries[] | [.key,(.value|@sh)] | join("=")' updated-env.json > updated-secrets.env
 sort -u -t '=' -k 1,1 updated-secrets.env secrets.env | grep -v '^$|^s*#' > merged-secrets.env
-# chmod -R 0777 $(pwd)
 . ./merged-secrets.env
 
 echo "APP_GH_TOKEN=$APP_GH_TOKEN" >> $GITHUB_ENV
@@ -33,5 +32,5 @@ echo "::add-mask::$CHOREO_PROJECT_ID"
 echo "::add-mask::$ENV_ID"
 echo "::add-mask::$APP_ID"
 
-# rm -rf env.json .env temp-env.json temp-updated-env.json updated-env.json secrets.env updated-secrets.env merged-secrets.env
+rm -rf env.json .env temp-env.json temp-updated-env.json updated-env.json secrets.env updated-secrets.env merged-secrets.env
 cp  $REG_CRED_FILE_NAME /home/runner/workspace/$CHOREO_GITOPS_REPO
