@@ -17,7 +17,7 @@ try {
         const privateAppToken = core.getInput('privateAppToken', { required: true });
         inputList.push(privateAppToken);
     }
-    const filePath = appRoot +  scriptFileName;
+    const filePath = appRoot.path +  scriptFileName;
     exec(`chmod 0777 ${filePath}`);
     exec(`sh ${filePath}`, inputList);
 
