@@ -34,3 +34,7 @@ echo "::add-mask::$APP_ID"
 
 rm -rf env.json .env temp-env.json temp-updated-env.json updated-env.json secrets.env updated-secrets.env merged-secrets.env
 cp  $REG_CRED_FILE_NAME /home/runner/workspace/$CHOREO_GITOPS_REPO
+
+mkdir -p $SCAN_RESULT_DIR
+echo "NEW_SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
+echo "DOCKER_TEMP_IMAGE=imageblueprint" >> $GITHUB_ENV
