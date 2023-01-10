@@ -9,7 +9,7 @@ try {
     const workflowType = core.getInput('type', { required: true });
     const envListSecret = core.getInput('envList', { required: true });
     const updatedEnvListSecret = core.getInput('updatedEnvList', { required: true });
-    const scriptFileName = workflowType === "byoc" ? "../shell-scripts/byoc.sh" : "../shell-scripts/ballerina-workflows.sh";
+    const scriptFileName = workflowType === "byoc" ? "shell-scripts/byoc.sh" : "shell-scripts/ballerina-workflows.sh";
 
     let inputList = [envListSecret, updatedEnvListSecret];
     if (workflowType != "byoc") {
