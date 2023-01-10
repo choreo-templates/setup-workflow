@@ -4115,13 +4115,21 @@ const exec = (__nccwpck_require__(580).exec);
 const path = __nccwpck_require__(17);
 
 try {
-    const workflowType = core.getInput('type');
     // const workflowType = "byoc";
-    if (workflowType === "byoc") {
-        const filePath = __nccwpck_require__.ab + "byoc.sh";
-        exec(`chmod 0777 ${filePath}`);
-        exec(`sh ${filePath}`);
+    const workflowType = core.getInput('type', { required: true });
+    const envListSecret = core.getInput('envList', { required: true });
+    const updatedEnvListSecret = core.getInput('updatedEnvList', { required: true });
+    const scriptFileName = workflowType === "byoc" ? "shell-scripts/byoc.sh" : "shell-scripts/ballerina-workflows.sh";
+
+    let inputList = [envListSecret, updatedEnvListSecret];
+    if (workflowType != "byoc") {
+        const privateAppToken = core.getInput('privateAppToken', { required: true });
+        inputList.push(privateAppToken);
     }
+    const filePath = path.resolve(__dirname, scriptFileName);
+    exec(`chmod 0777 ${filePath}`);
+    exec(`sh ${filePath}`, inputList);
+
 } catch (error) {
     core.setFailed(error.message);
 }

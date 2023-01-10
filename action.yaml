@@ -3,8 +3,18 @@ description: 'Initial setup of the Choreo workflow'
 inputs:
   type:
     description: 'Workflow type'
-    required: true
+    required: false
     default: 'byoc'
+  envList:
+    description: 'Environment Varibale Lsit'
+    required: true
+  updatedEnvList:
+    description: 'Updated Environment Varibale Lsit'
+    required: true
+  privateAppToken:
+    description: 'Private App Token for Ballerina'
+    required: false
+    default: ''
 runs:
   using: 'node16'
   main: 'dist/index.js'
