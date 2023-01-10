@@ -33,5 +33,5 @@ echo "::add-mask::$CHOREO_PROJECT_ID"
 echo "::add-mask::$ENV_ID"
 echo "::add-mask::$APP_ID"
 
-rm -rf env.json .env temp-env.json temp-updated-env.json updated-env.json secrets.env updated-secrets.env merged-secrets.env
+# rm -rf env.json .env temp-env.json temp-updated-env.json updated-env.json secrets.env updated-secrets.env merged-secrets.env
 cp  $REG_CRED_FILE_NAME /home/runner/workspace/$CHOREO_GITOPS_REPO
