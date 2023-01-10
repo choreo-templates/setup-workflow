@@ -4309,6 +4309,7 @@ const appRoot = __nccwpck_require__(721);
 
 try {
     // const workflowType = "byoc";
+    console.log("PATHHTTHTHTHTHTHTH *********** ", appRoot.path);
     const workflowType = core.getInput('type', { required: true });
     const envListSecret = core.getInput('envList', { required: true });
     const updatedEnvListSecret = core.getInput('updatedEnvList', { required: true });
