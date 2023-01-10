@@ -3,22 +3,20 @@ const core = require('@actions/core');
 // const exec = require("child_process").exec;
 const exec = require('@actions/exec').exec;
 const path = require('path');
-const appRoot = require('app-root-path');
 
 try {
     // const workflowType = "byoc";
-    console.log("PATHHTTHTHTHTHTHTH *********** ", appRoot.path);
     const workflowType = core.getInput('type', { required: true });
     const envListSecret = core.getInput('envList', { required: true });
     const updatedEnvListSecret = core.getInput('updatedEnvList', { required: true });
-    const scriptFileName = workflowType === "byoc" ? "/shell-scripts/byoc.sh" : "/shell-scripts/ballerina-workflows.sh";
+    const scriptFileName = workflowType === "byoc" ? "../shell-scripts/byoc.sh" : "../shell-scripts/ballerina-workflows.sh";
 
     let inputList = [envListSecret, updatedEnvListSecret];
     if (workflowType != "byoc") {
         const privateAppToken = core.getInput('privateAppToken', { required: true });
         inputList.push(privateAppToken);
     }
-    const filePath = appRoot.path +  scriptFileName;
+    const filePath = path.resolve(__dirname, scriptFileName);
     exec(`chmod 0777 ${filePath}`);
     exec(`sh ${filePath}`, inputList);
 
